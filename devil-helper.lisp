@@ -3,6 +3,7 @@
 (defun load-image-to-c-array (filename)
   (cl-devil:with-init
     (cl-devil:with-images ((a filename))
+      (declare (ignore a))
       (cl-devil:check-error)
       (let* ((height (cl-devil:image-height))
              (width (cl-devil:image-width))
