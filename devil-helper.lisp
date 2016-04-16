@@ -11,7 +11,7 @@
         (cl-devil:copy-pixels 0 0 0 (cl-devil:image-width) (cl-devil:image-height) 1
                               :rgba :unsigned-byte data-cpy)
         (cepl:make-c-array-from-pointer (list width height)
-                                       :ubyte-vec4 data-cpy)))))
+                                       :uint8-vec4 data-cpy)))))
 
 (defun load-image-to-texture (filename)
   (let* ((array (load-image-to-c-array filename))
