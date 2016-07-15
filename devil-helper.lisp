@@ -13,8 +13,15 @@
         (cepl:make-c-array-from-pointer (list width height)
                                        :uint8-vec4 data-cpy)))))
 
-(defun load-image-to-texture (filename)
+(defun load-image-to-texture (filename &optional (image-format :rgba8) mipmap
+					 generate-mipmaps)
   (let* ((array (load-image-to-c-array filename))
-	 (texture (cepl:make-texture array)))
+	 (pixel-format (cepl:lisp-type->pixel-format :uint8-vec4))
+	 (texture (cepl:make-texture
+		   array
+		   :element-type image-format
+		   :pixel-format pixel-format
+		   :mipmap mipmap
+		   :generate-mipmaps generate-mipmaps)))
     (cepl:free-c-array array)
     texture))
